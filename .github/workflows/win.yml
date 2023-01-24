@@ -78,7 +78,7 @@ jobs:
         env:
           GYP_MSVS_OVERRIDE_PATH: 'C:\Program Files\Microsoft Visual Studio\2022\Community\'
           GYP_MSVS_VERSION: 2022
-        run: '%TBUILD%\%REPO_NAME%\Telegram\build\prepare\win.bat silent'
+        run: '%TBUILD%\tdesktop\Telegram\build\prepare\win.bat silent'
 
       - name: Read defines.
         shell: bash
