@@ -32,12 +32,12 @@ jobs:
 
   windows:
     name: Windows
-    runs-on: windows-2022
+    runs-on: aws-windows
     continue-on-error: true
 
     strategy:
       matrix:
-        arch: [Win32, x64]
+        arch: [x64]
 
     env:
       UPLOAD_ARTIFACT: "true"
