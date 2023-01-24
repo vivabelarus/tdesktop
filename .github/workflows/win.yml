@@ -52,8 +52,11 @@ jobs:
     steps:
       - name: Prepare directories.
         run: |
+          mkdir %userprofile%\TBuild
           mklink /d %GITHUB_WORKSPACE%\TBuild %userprofile%\TBuild
           echo TBUILD=%GITHUB_WORKSPACE%\TBuild>>%GITHUB_ENV%
+          
+          mkdir %userprofile%\TBuild Libraries
           mklink /d %userprofile%\TBuild\Libraries %GITHUB_WORKSPACE%\Libraries
 
       - name: Clone.
