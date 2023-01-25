@@ -59,6 +59,14 @@ jobs:
         with:
           submodules: recursive
           path: ${{ env.TBUILD }}\tdesktop
+          
+      - uses: ilammy/msvc-dev-cmd@v1.12.0
+        name: Native Tools Command Prompt.
+        with:
+          arch: ${{ matrix.arch }}
+          
+      - name: Setup NASM.
+        uses: ilammy/setup-nasm@v1
 
       - name: Clone with checkout.
         uses: actions/checkout@v3.1.0
