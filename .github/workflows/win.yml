@@ -82,19 +82,6 @@ jobs:
           GYP_MSVS_VERSION: 2022
         run: '%TBUILD%\tdesktop\Telegram\build\prepare\win.bat silent'
 
-      - name: Read defines.
-        shell: bash
-        run: |
-          DEFINE=""
-          if [ -n "${{ matrix.defines }}" ]; then
-            DEFINE="-D ${{ matrix.defines }}=ON"
-            echo Define from matrix: $DEFINE
-            echo "ARTIFACT_NAME=Telegram_${{ matrix.arch }}_${{ matrix.defines }}" >> $GITHUB_ENV
-          else
-            echo "ARTIFACT_NAME=Telegram_${{ matrix.arch }}" >> $GITHUB_ENV
-          fi
-          echo "TDESKTOP_BUILD_DEFINE=$DEFINE" >> $GITHUB_ENV
-
       - name: Telegram Desktop build.
         if: env.ONLY_CACHE == 'false'
         run: |
@@ -106,7 +93,6 @@ jobs:
           -D TDESKTOP_API_HASH=${{ secrets.API_HASH }} ^
           -D DESKTOP_APP_DISABLE_CRASH_REPORTS=OFF ^
           -D DESKTOP_APP_NO_PDB=ON ^
-          %TDESKTOP_BUILD_DEFINE% ^
           -DCMAKE_SYSTEM_VERSION=%SDK%
           cd ..\out
           msbuild -m Telegram.sln /p:Configuration=Release,Platform=${{ matrix.arch }}
