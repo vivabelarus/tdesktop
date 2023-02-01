@@ -58,6 +58,9 @@ jobs:
 
           mkdir %userprofile%\TBuild Libraries
           mklink /d %userprofile%\TBuild\Libraries %GITHUB_WORKSPACE%\Libraries
+      - name: Echo GITHUB_REPOSITORY.
+        shell: bash
+        run: echo "hi"
       - name: Get repository name.
         shell: bash
         run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
